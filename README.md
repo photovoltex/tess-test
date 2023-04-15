@@ -2,7 +2,6 @@
 
 ## Building
 - see [tesseract-sys](https://github.com/ccouzens/tesseract-sys) and [opencv-rust](https://github.com/twistedfall/opencv-rust) for more infos and help how to build (for example on windows)
-- 
 
 ### Local requirements
 - Arch-based
