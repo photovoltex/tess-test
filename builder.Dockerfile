@@ -5,7 +5,9 @@ ARG GROUP_ID=1000
 
 # update image and install required packages
 RUN apt update &&\
-    apt install -y pkg-config libleptonica-dev libtesseract-dev clang
+    apt install -y pkg-config clang \
+    libleptonica-dev libtesseract-dev \
+    libopencv-dev
 
 # good explaination why we have to do this and how it works
 #  https://jtreminio.com/blog/running-docker-containers-as-current-host-user/

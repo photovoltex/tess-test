@@ -33,6 +33,9 @@ then
                         --build-arg USER_ID=$(id -u) \
                         --build-arg GROUP_ID=$(id -g) \
                         -f $builder_dockerfile .
+    # remove container depending on the image
+    docker container rm build-$builder_name
+    docker container rm linting-$builder_name
 else 
     echo "skip building builder, builder image available"
 fi
@@ -42,6 +45,8 @@ if [ "$(find $runner_dockerfile -type f -mmin -$last_modified_in)" != "" ] ||
    [ "$(docker images --filter "reference=*$runner_name*" -q)" = "" ]
 then
     docker buildx build -t $runner_name -f $runner_dockerfile .
+    # remove container depending on the image
+    docker container rm run-$runner_name
 else
     echo "skip building runner, runner image available"
 fi

@@ -1,18 +1,19 @@
 # tess-test
 
 ## Building
-- see [tesseract-sys](https://github.com/ccouzens/tesseract-sys) for more infos and help how to build (for example on windows)
+- see [tesseract-sys](https://github.com/ccouzens/tesseract-sys) and [opencv-rust](https://github.com/twistedfall/opencv-rust) for more infos and help how to build (for example on windows)
+- 
 
 ### Local requirements
 - Arch-based
   ```sh
-  # testdata-all package: tesseract-data
-  pacman -S leptonica tesseract-dev clang pkg-config
+  # testdata-all package: tesseract-data, opencv addition: vtk glew fmt openmpi
+  pacman -S clang pkg-config leptonica tesseract-dev qt5-base opencv
   ```
 - Debian-based
   ```sh
   # testdata-all package: tesseract-ocr-all
-  apt install -y pkg-config libleptonica-dev libtesseract-dev clang 
+  apt install -y pkg-config clang libleptonica-dev libtesseract-dev libopencv-dev
   ```
 - for windows and other unix systems, see [tesseract-sys#Building](https://github.com/ccouzens/tesseract-sys#building)
 

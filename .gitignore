@@ -1,2 +1,4 @@
 /target
 /results
+*.png
+!rust_lang_org_eng*.png
