@@ -8,11 +8,16 @@ edition = "2021"
 [dependencies]
 env_logger = "0.10.0"
 eyre = "0.6.8"
+image = "0.24.6"
 log = "0.4.17"
-opencv = "0.79.0"
+opencv = { version = "0.79.0", optional = true }
+printpdf = { version = "0.5.3", optional = true, features = ["embedded_images"] }
 tesseract = "0.13.0"
 
 [features]
-resize = []
+opencv = ["dep:opencv"]
+resize = ["opencv"]
+printpdf = ["dep:printpdf"]
+generate_pdf = ["printpdf"]
 perf_logging = []
-default = [ "resize", "perf_logging" ]
+default = ["generate_pdf", "resize", "perf_logging"]
