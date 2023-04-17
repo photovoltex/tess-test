@@ -23,7 +23,7 @@ fn measure_millis<T>(msg: &str, f: impl FnOnce() -> T) -> T {
     t
 }
 
-fn log_img(msg: &str, img: Option<&str>, x: i32, y: i32) {
+fn img_size_logging(msg: &str, img: Option<&str>, x: i32, y: i32) {
     let img = img.map(|img| format!("(img: {img})")).unwrap_or_default();
     log::info!("{msg}{img}: x({x}):y({y})");
 }
@@ -31,7 +31,7 @@ fn log_img(msg: &str, img: Option<&str>, x: i32, y: i32) {
 #[cfg(feature = "resize")]
 fn resize(img: &str, scale: f64, read_flags: i32) -> eyre::Result<Mat> {
     let src = imgcodecs::imread(img, read_flags)?;
-    log_img("source", Some(img), src.cols(), src.rows());
+    img_size_logging("source", Some(img), src.cols(), src.rows());
 
     let mut res = Mat::default();
 
@@ -43,7 +43,7 @@ fn resize(img: &str, scale: f64, read_flags: i32) -> eyre::Result<Mat> {
     };
     // take the image (src), and scale it up by given scale
     imgproc::resize(&src, &mut res, Size::default(), scale, scale, interpolation)?;
-    log_img("resized", None, res.cols(), res.rows());
+    img_size_logging("resized", None, res.cols(), res.rows());
     Ok(res)
 }
 
@@ -124,7 +124,7 @@ fn main() -> eyre::Result<()> {
 
         let width = image.image.width.0.try_into()?;
         let height = image.image.height.0.try_into()?;
-        log_img("source", Some(&img), width, height);
+        img_size_logging("source", Some(&img), width, height);
 
         let width = Mm(width.try_into()?);
         let height = Mm(height.try_into()?);
